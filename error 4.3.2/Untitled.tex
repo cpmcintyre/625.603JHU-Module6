@@ -1,0 +1,107 @@
+\documentclass[svgnames]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\newtheorem{mydef}{Given}
+\newtheorem{mytheorem}{Theorem}
+\usepackage{enumitem}
+\usepackage{venndiagram}
+\usepackage{smartdiagram}
+\usepackage{caption}
+\usepackage{subcaption}
+%\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+\usepackage{pgfplots}
+%\usepackage{tkiz}
+
+
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+%\renewcommand{\theenumi}{\Alph{enumi}}
+\newenvironment{amatrix}[1]{%
+  \left(\begin{array}{@{}*{#1}{c}|c@{}}
+}{%
+  \end{array}\right)
+}
+
+\newenvironment{tolerant}[1]{%
+  \par\tolerance=#1\relax
+}{%
+  \par
+}
+
+
+\title{Statistical methods: Homework 6}
+\author{Cameron McIntyre}
+\date{October 2018}
+
+\begin{document}
+
+\maketitle
+
+\section{4.3.2}
+\begin{enumerate}[label=(\alph*)]
+\item Let $0<a<b$. Which number is larger?
+
+$$\int^{b}_{a}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} \ or\  \int^{-a}_{-b}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}$$
+
+\textbf{Answer:}
+The two quantities are equal. We rely on the symmetry about 0 of the normal distribution to show this.
+
+Consider only $f(z) = e^{-\frac{z^2}{2}}$. For any number $a$ we can show that $f(-a)=f(a)$.
+
+$$f(-a) = e^{-\frac{(-a)^2}{2}} = e^{-\frac{(-1)^2a^2}{2}} = e^{-\frac{(1\cdot a^2)}{2}} = f(a) $$
+
+Therefore,
+
+\[ \int^{b}_{a}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}=P(a<Z<b) = 1 - (P(Z<a) + P(Z > b))\]
+\[= 1 - (P(Z> -a) + P(Z < - b)) (by \ symmetry) \]
+\[= P(-b < Z < -a) \]
+\[= \int^{-a}_{-b}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} \]
+
+\item Let $a>0$. Which number is larger?
+
+$$\int^{a+1}_{a}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} \ or\  \int^{a+\frac{1}{2}}_{a-\frac{1}{2}}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}$$
+
+\textbf{Answer:}
+
+ $\int^{a+\frac{1}{2}}_{a-\frac{1}{2}}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}$ is the larger quantity.
+ 
+Consider only $f(z) = e^{-\frac{z^2}{2}}$
+
+Then, $f'(z)=-z e^{-\frac{z^2}{2}}$, Clearly $f'(z)<0 \ \forall \  z >0 $.
+
+Now( $a+1-a )=1$ and also $(a+\frac{1}{2} - (a-\frac{1}{2}))=1$ Therefore the integrals are over the same length domain.
+
+But, $f(a+\epsilon)<f(a)$ because $f'(a)<0$. Therefore the normal function is always less over the interval $[a, a+1]$, compared to $[a-\frac{1}{2}, a+\frac{1}{2}]$. 
+
+So we can then conclude
+$$\int^{a+1}_{a}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} <  \int^{a+\frac{1}{2}}_{a-\frac{1}{2}}\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}$$
+
+\end{enumerate}
+\end{document}
